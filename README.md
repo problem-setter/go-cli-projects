@@ -1,5 +1,7 @@
 # Task Tracker
 
+A solution to the [Task Tracker project on roadmap.sh](https://roadmap.sh/projects/task-tracker).
+
 Task Tracker is a simple command-line task manager written in Go. It lets you
 add, update, delete, list, and mark tasks from the terminal while storing the
 data locally in a JSON file.
