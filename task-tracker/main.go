@@ -2,16 +2,18 @@ package main
 
 import (
 	"flag"
-	"fmt"
+
+	validator "github.com/problem-setter/task-tracker/internal"
 )
 
 func main() {
+	flag.Usage = validator.PrintHelp
 	flag.Parse()
 
 	args := flag.Args()
-	validation(args)
 
-	fmt.Println(len(args))
+	validator.Validation(args)
 
-	fmt.Println(args)
+	// fmt.Println(len(args))
+	// fmt.Println(args)
 }
