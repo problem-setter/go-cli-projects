@@ -33,7 +33,18 @@ func ReadJSON(path string) ([]Task, error) {
 	defer file.Close()
 
 	var taskSlice []Task
-
 	json.NewDecoder(file).Decode(&taskSlice)
 	return taskSlice, nil
+}
+
+func UpdateJSON(task []Task, path string) error {
+	data, err := json.MarshalIndent(task, "", "	")
+	if err != nil {
+		return fmt.Errorf("failed to encode json: %w", err)
+	}
+
+	if err := os.WriteFile(path, data, 0644); err != nil {
+		return fmt.Errorf("failed to write json: %w", err)
+	}
+	return nil
 }

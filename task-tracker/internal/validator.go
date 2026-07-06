@@ -2,8 +2,10 @@ package validator
 
 import (
 	"fmt"
+	"strconv"
 
 	add "github.com/problem-setter/task-tracker/cmd"
+	update "github.com/problem-setter/task-tracker/cmd"
 )
 
 func PrintHelp() {
@@ -24,20 +26,30 @@ available commands:
   `)
 }
 
-func Validation(args []string) {
+func IsNum(s string) bool {
+	_, err := strconv.Atoi(s)
+	return err == nil
+}
+
+func Validation(args []string) error {
 	if len(args) == 0 || (len(args) == 1 && args[0] == "help") {
 		PrintHelp()
-		return
+		return nil
 	}
 
 	if len(args) > 3 {
-		fmt.Println("Failed to execute this command!")
-		return
+		return fmt.Errorf("Failed to execute this command!")
 	}
 
-	if len(args) == 2 && args[0] == "add" { // len = 2
-		add.AddTask(args[1])
+	if len(args) == 2 && args[0] == "add" { // add <description>
+		return add.AddTask(args[1])
+	}
+
+	if len(args) == 3 && args[0] == "update" && IsNum(args[1]) {
+		id, _ := strconv.Atoi(args[1])
+		return update.UpdateTask(id, args[2])
 	}
 
 	// fmt.Println(args)
+	return nil
 }
