@@ -7,19 +7,8 @@ import (
 	"github.com/problem-setter/task-tracker/internal/response"
 )
 
-func SearchTask(id int, task []response.Task) int {
-	idx := 0
-	for _, tasks := range task {
-		if tasks.ID == id {
-			return idx
-		}
-		idx++
-	}
-	return -1
-}
-
-func UpdateTask(id int, s string) error {
-	// fmt.Println("update.go: ping!")
+func MarkTask(id int, status response.Status) error {
+	// fmt.Println("mark.go: ping!")
 
 	task, err := response.ReadJSON(response.FilePath)
 	if err != nil {
@@ -30,13 +19,13 @@ func UpdateTask(id int, s string) error {
 	if idx == -1 {
 		return fmt.Errorf("no task found.")
 	}
-	task[idx].Description = s
+	task[idx].Status = status
 	task[idx].UpdatedAt = time.Now()
 
 	if err := response.UpdateJSON(task, response.FilePath); err != nil {
-		return fmt.Errorf("failed to update task: %w", err)
+		return fmt.Errorf("failed to mark task: %w", err)
 	}
 
-	fmt.Printf("task with id: %d was successfully updated.\n", id)
+	fmt.Printf("task with id: %d was successfully marked as %v.\n", id, status)
 	return nil
 }

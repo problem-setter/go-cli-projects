@@ -7,7 +7,7 @@ import (
 )
 
 func DeleteTask(id int) error {
-	fmt.Println("delete.go: ping!")
+	// fmt.Println("delete.go: ping!")
 
 	task, err := response.ReadJSON(response.FilePath)
 	if err != nil {
@@ -40,5 +40,7 @@ func DeleteTask(id int) error {
 	if err := response.UpdateJSON(taskTemp, response.FilePath); err != nil {
 		return fmt.Errorf("failed to delete task: %w", err)
 	}
+
+	fmt.Printf("task with id: %d was successfully deleted.\n", id)
 	return nil
 }

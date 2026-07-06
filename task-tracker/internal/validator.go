@@ -7,7 +7,9 @@ import (
 	add "github.com/problem-setter/task-tracker/cmd"
 	delete "github.com/problem-setter/task-tracker/cmd"
 	list "github.com/problem-setter/task-tracker/cmd"
+	mark "github.com/problem-setter/task-tracker/cmd"
 	update "github.com/problem-setter/task-tracker/cmd"
+	"github.com/problem-setter/task-tracker/internal/response"
 )
 
 func PrintHelp() {
@@ -40,10 +42,10 @@ func Validation(args []string) error {
 	}
 
 	if len(args) > 3 {
-		return fmt.Errorf("Failed to execute this command!")
+		return fmt.Errorf("failed to execute this command.")
 	}
 
-	if len(args) == 2 && args[0] == "add" { // add <description>
+	if len(args) == 2 && args[0] == "add" {
 		return add.AddTask(args[1])
 	}
 
@@ -61,6 +63,26 @@ func Validation(args []string) error {
 		return delete.DeleteTask(id)
 	}
 
-	// fmt.Println(args)
-	return nil
+	if len(args) == 2 && args[0] == "mark-in-progress" && IsNum(args[1]) {
+		id, _ := strconv.Atoi(args[1])
+		return mark.MarkTask(id, response.StatusInProgress)
+	}
+
+	if len(args) == 2 && args[0] == "mark-done" && IsNum(args[1]) {
+		id, _ := strconv.Atoi(args[1])
+		return mark.MarkTask(id, response.StatusDone)
+	}
+
+	if len(args) == 2 && args[0] == "list" {
+		switch args[1] {
+		case "todo":
+			return list.TaskListWithParam(response.StatusTodo)
+		case "in-progress":
+			return list.TaskListWithParam(response.StatusInProgress)
+		case "done":
+			return list.TaskListWithParam(response.StatusDone)
+		}
+	}
+
+	return fmt.Errorf("unknown command, help usage: ./task-cli help")
 }
