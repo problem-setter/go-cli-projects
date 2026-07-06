@@ -28,7 +28,7 @@ func UpdateTask(id int, s string) error {
 
 	idx := SearchTask(id, task)
 	if idx == -1 {
-		return fmt.Errorf("id not found.")
+		return fmt.Errorf("no task found.")
 	}
 	task[idx].Description = s
 	task[idx].UpdatedAt = time.Now()

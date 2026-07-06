@@ -1,1 +1,30 @@
-[]
+[
+	{
+		"id": 1,
+		"description": "Nomor 1",
+		"status": "todo",
+		"createdAt": "2026-07-06T20:33:51.379924548+07:00",
+		"updatedAt": "2026-07-06T20:33:51.379924639+07:00"
+	},
+	{
+		"id": 2,
+		"description": "Nomor 3",
+		"status": "todo",
+		"createdAt": "2026-07-06T20:33:55.311783646+07:00",
+		"updatedAt": "2026-07-06T20:33:55.311783733+07:00"
+	},
+	{
+		"id": 3,
+		"description": "Nomor 5",
+		"status": "todo",
+		"createdAt": "2026-07-06T20:34:39.492441608+07:00",
+		"updatedAt": "2026-07-06T20:34:39.492441717+07:00"
+	},
+	{
+		"id": 4,
+		"description": "Nomor 6",
+		"status": "todo",
+		"createdAt": "2026-07-06T20:34:41.21225681+07:00",
+		"updatedAt": "2026-07-06T20:34:41.212256918+07:00"
+	}
+]

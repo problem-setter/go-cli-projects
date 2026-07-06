@@ -15,7 +15,7 @@ func TaskList() error {
 	}
 
 	if len(task) == 0 {
-		return fmt.Errorf("no tasks found.")
+		return fmt.Errorf("no task found.")
 	}
 
 	for idx, task := range task {

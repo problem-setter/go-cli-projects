@@ -15,13 +15,13 @@ func AddTask(s string) error {
 		return fmt.Errorf("failed to read json: %w", err)
 	}
 
-	id := 1
-	if len(task) != 0 {
-		id = task[len(task)-1].ID + 1
-	}
+	// id := 1
+	// if len(task) != 0 {
+	// 	id = task[len(task)-1].ID + 1
+	// }
 
 	newTask := response.Task{
-		ID:          id,
+		ID:          len(task) + 1,
 		Description: s,
 		Status:      response.StatusTodo,
 		CreatedAt:   time.Now(),

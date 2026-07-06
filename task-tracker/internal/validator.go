@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	add "github.com/problem-setter/task-tracker/cmd"
+	delete "github.com/problem-setter/task-tracker/cmd"
 	list "github.com/problem-setter/task-tracker/cmd"
 	update "github.com/problem-setter/task-tracker/cmd"
 )
@@ -53,6 +54,11 @@ func Validation(args []string) error {
 
 	if len(args) == 1 && args[0] == "list" {
 		return list.TaskList()
+	}
+
+	if len(args) == 2 && args[0] == "delete" && IsNum(args[1]) {
+		id, _ := strconv.Atoi(args[1])
+		return delete.DeleteTask(id)
 	}
 
 	// fmt.Println(args)
