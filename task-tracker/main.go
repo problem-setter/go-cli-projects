@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	flag.Usage = validator.PrintHelp
 	flag.Parse()
 
