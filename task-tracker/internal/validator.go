@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	add "github.com/problem-setter/task-tracker/cmd"
+	list "github.com/problem-setter/task-tracker/cmd"
 	update "github.com/problem-setter/task-tracker/cmd"
 )
 
@@ -48,6 +49,10 @@ func Validation(args []string) error {
 	if len(args) == 3 && args[0] == "update" && IsNum(args[1]) {
 		id, _ := strconv.Atoi(args[1])
 		return update.UpdateTask(id, args[2])
+	}
+
+	if len(args) == 1 && args[0] == "list" {
+		return list.TaskList()
 	}
 
 	// fmt.Println(args)

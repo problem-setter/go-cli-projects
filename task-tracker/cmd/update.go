@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/problem-setter/task-tracker/internal/response"
 )
@@ -27,9 +28,10 @@ func UpdateTask(id int, s string) error {
 
 	idx := SearchTask(id, task)
 	if idx == -1 {
-		return fmt.Errorf("id not found: %w", err)
+		return fmt.Errorf("id not found.")
 	}
 	task[idx].Description = s
+	task[idx].UpdatedAt = time.Now()
 
 	if err := response.UpdateJSON(task, response.FilePath); err != nil {
 		return fmt.Errorf("failed to update task: %w", err)

@@ -14,7 +14,7 @@ func main() {
 	args := flag.Args()
 
 	if err := validator.Validation(args); err != nil {
-		fmt.Println(err)
+		fmt.Printf("%v\n", err)
 	}
 
 	// fmt.Println(len(args))
